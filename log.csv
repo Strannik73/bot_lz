@@ -1,6 +1,2 @@
 Unic_ID,@TG_nick,Motion,API,Date,Time,API_answer
-0,ANTONS_33,Press start btn,None,2025-09-13,10:34:52.988941,None
-1,ANTONS_33,Press minsk btn,"https://api.open-meteo.com/v1/forecast?latitude=53.9&longitude=27.5667&hourly=temperature_2m,precipitation_probability&forecast_days=3",2025-09-13,10:35:17.449985,<Response [200]>
-2,ANTONS_33,Press minsk btn,"https://api.open-meteo.com/v1/forecast?latitude=53.9&longitude=27.5667&hourly=temperature_2m,precipitation_probability&forecast_days=3",2025-09-13,10:35:23.478238,<Response [200]>
-3,ANTONS_33,Press mogilev btn,"https://api.open-meteo.com/v1/forecast?latitude=53.9168&longitude=30.3449&hourly=temperature_2m,rain,apparent_temperature&timezone=Europe%2FMoscow&forecast_days=3",2025-09-13,10:35:29.040831,<Response [200]>
-4,ANTONS_33,Keyboard typing,None,2025-09-13,10:35:54.424098,None
+0,ANTONS_33,Keyboard typing,None,2025-09-13,10:37:07.562219,None

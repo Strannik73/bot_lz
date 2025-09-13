@@ -13,7 +13,7 @@ from tok import token_r
 import pandas as pd
 
 
-# ==== НАСТРОЙКИ ====
+#=======================ТОКЕН==============
 token_r = '8487111231:AAFUCOKLJ_m9R5vJaMBUDmpeHONRP1i1u90'
 
 bot = Bot(token_r)
@@ -229,7 +229,7 @@ async def handle_mogilev(message: types.Message):
     return [motion, url, code_resp]
     
     
-# Обработчик текстового сообщения
+# Обработчик сообщения
 @dp.message()
 @logger
 async def echo(message: types.Message):
@@ -238,7 +238,7 @@ async def echo(message: types.Message):
     return [motion]
 
 
-# === MAIN ===
+#==========MAIN===========
 async def main():
     print('ЗАГРУЗКА БОТА...')
     await dp.start_polling(bot)
