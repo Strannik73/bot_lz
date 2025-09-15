@@ -4,15 +4,15 @@ import pandas as pd
 import requests_cache
 import requests
 from retry_requests import retry
-
+from io import BytesIO
 import asyncio
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command
-from aiogram.types import  BotCommand 
+from aiogram.types import  BotCommand, InputFile
 from tok import token_r
 import pandas as pd
-
-
+import os
+import aiohttp
 #=======================ТОКЕН==============
 token_r = '8487111231:AAFUCOKLJ_m9R5vJaMBUDmpeHONRP1i1u90'
 
@@ -43,12 +43,8 @@ def logger(func):
 urlmk = "https://api.open-meteo.com/v1/forecast?latitude=53.9&longitude=27.5667&hourly=temperature_2m,precipitation_probability&forecast_days=3"
 urlv = "https://api.open-meteo.com/v1/forecast?latitude=55.1904&longitude=30.2049&hourly=temperature_2m,rain,apparent_temperature&timezone=Europe%2FMoscow&forecast_days=3"
 urlmg = "https://api.open-meteo.com/v1/forecast?latitude=53.9168&longitude=30.3449&hourly=temperature_2m,rain,apparent_temperature&timezone=Europe%2FMoscow&forecast_days=3"
-# https://dog.ceo/api/breeds/image/random
-urlD ='https://placekeanu.com/200/150'
-# https://arbeitnow.com/api/job-board-api объявления
-# 'https://www.arbeitnow.com/api/job-board-api' 
-
-urlV = 'https://finalspaceapi.com/api/v0/'
+urlD ='https://http.cat/205'
+urlCat = "https://catfact.ninja/fact"
 
 async def set_commands():
     commands = [
@@ -74,8 +70,8 @@ openmeteo = openmeteo_requests.Client(session=retry_session)
 POGODA = [[types.KeyboardButton(text="Минск")],
         [types.KeyboardButton(text="Витебск")],
         [types.KeyboardButton(text="Могилев")],
-        [types.KeyboardButton(text="Картинка")],
-        [types.KeyboardButton(text="Видео")]
+        [types.KeyboardButton(text="Факты о котах")],
+        [types.KeyboardButton(text="Картинка")]
         ]
 
 
@@ -237,26 +233,38 @@ async def handle_mogilev(message: types.Message):
     return [motion, url, code_resp]
 
 #=============================
-
-@dp.message(F.text() == "Картинка")
+@dp.message(F.text == "Факты о котах")
 @logger
-async def with_puree(message: types.Message):
-    await bot.send_photo(message.chat.id, url)
+async def handle_cats(message: types.Message):
+    await message.answer(urlCat)
+    url = urlCat
+    code_resp = requests.get(url)
+    motion = 'Cats'
+    return [motion, url, code_resp]
+
+@dp.message(F.text == "Картинка")
+@logger
+async def with_photo(message: types.Message):
+    await message.answer(urlD)
     url = urlD
     code_resp = requests.get(url)
-    motion = 'photo'
+    motion = 'kartinka'
     return [motion, url, code_resp]
 
-@dp.message(F.text() == "Видео")
-@logger
-async def with_puree(message: types.Message):
-    await bot.send_video(message.chat.id, url)
-    url = urlV
-    code_resp = requests.get(url)
-    motion = 'Vidos'
-    return [motion, url, code_resp]
-    
-    
+
+# @dp.message(F.text == "Картинка")
+# async def with_photo(message: types.Message):
+#     async with aiohttp.ClientSession() as session:
+#         async with session.get(urlD) as resp:
+#             resp.raise_for_status()
+#             img_bytes = await resp.read()
+
+#     bio = BytesIO(img_bytes)
+#     bio.seek(0)
+#     input_file = InputFile(bio, filename="image.jpg")
+#     await bot.send_photo(chat_id=message.chat.id, photo=input_file, caption="Вот картинка")
+
+
 # Обработчик сообщения
 @dp.message()
 @logger
