@@ -1,2 +1,10 @@
 Unic_ID,@TG_nick,Motion,API,Date,Time,API_answer
-0,ANTONS_33,Keyboard typing,None,2025-09-13,10:37:07.562219,None
+0,ANTONS_33,Press start btn,None,2025-09-15,10:23:37.680747,None
+1,ANTONS_33,Keyboard typing,None,2025-09-15,10:23:41.915515,None
+2,ANTONS_33,Keyboard typing,None,2025-09-15,10:23:43.220059,None
+3,ANTONS_33,Press vitebsk btn,"https://api.open-meteo.com/v1/forecast?latitude=55.1904&longitude=30.2049&hourly=temperature_2m,rain,apparent_temperature&timezone=Europe%2FMoscow&forecast_days=3",2025-09-15,10:23:48.748393,<Response [200]>
+4,ANTONS_33,Keyboard typing,None,2025-09-15,10:23:51.265698,None
+5,ANTONS_33,Press minsk btn,"https://api.open-meteo.com/v1/forecast?latitude=53.9&longitude=27.5667&hourly=temperature_2m,precipitation_probability&forecast_days=3",2025-09-15,10:23:53.481822,<Response [200]>
+6,ANTONS_33,Press vitebsk btn,"https://api.open-meteo.com/v1/forecast?latitude=55.1904&longitude=30.2049&hourly=temperature_2m,rain,apparent_temperature&timezone=Europe%2FMoscow&forecast_days=3",2025-09-15,10:23:54.991844,<Response [200]>
+7,ANTONS_33,Press mogilev btn,"https://api.open-meteo.com/v1/forecast?latitude=53.9168&longitude=30.3449&hourly=temperature_2m,rain,apparent_temperature&timezone=Europe%2FMoscow&forecast_days=3",2025-09-15,10:23:55.944293,<Response [200]>
+8,ANTONS_33,Press minsk btn,"https://api.open-meteo.com/v1/forecast?latitude=53.9&longitude=27.5667&hourly=temperature_2m,precipitation_probability&forecast_days=3",2025-09-15,10:24:18.655072,<Response [200]>

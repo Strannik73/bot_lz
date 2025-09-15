@@ -43,7 +43,11 @@ def logger(func):
 urlmk = "https://api.open-meteo.com/v1/forecast?latitude=53.9&longitude=27.5667&hourly=temperature_2m,precipitation_probability&forecast_days=3"
 urlv = "https://api.open-meteo.com/v1/forecast?latitude=55.1904&longitude=30.2049&hourly=temperature_2m,rain,apparent_temperature&timezone=Europe%2FMoscow&forecast_days=3"
 urlmg = "https://api.open-meteo.com/v1/forecast?latitude=53.9168&longitude=30.3449&hourly=temperature_2m,rain,apparent_temperature&timezone=Europe%2FMoscow&forecast_days=3"
-urlD ='https://place.dog/300/200'
+# https://dog.ceo/api/breeds/image/random
+urlD ='https://placekeanu.com/200/150'
+# https://arbeitnow.com/api/job-board-api объявления
+# 'https://www.arbeitnow.com/api/job-board-api' 
+
 urlV = 'https://finalspaceapi.com/api/v0/'
 
 async def set_commands():
@@ -240,7 +244,7 @@ async def with_puree(message: types.Message):
     await bot.send_photo(message.chat.id, url)
     url = urlD
     code_resp = requests.get(url)
-    motion = 'Dog'
+    motion = 'photo'
     return [motion, url, code_resp]
 
 @dp.message(F.text() == "Видео")
