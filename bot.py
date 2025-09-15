@@ -14,7 +14,7 @@ import pandas as pd
 
 
 #=======================ТОКЕН==============
-token_r = ''
+token_r = '8487111231:AAFUCOKLJ_m9R5vJaMBUDmpeHONRP1i1u90'
 
 bot = Bot(token_r)
 dp = Dispatcher()
@@ -43,6 +43,8 @@ def logger(func):
 urlmk = "https://api.open-meteo.com/v1/forecast?latitude=53.9&longitude=27.5667&hourly=temperature_2m,precipitation_probability&forecast_days=3"
 urlv = "https://api.open-meteo.com/v1/forecast?latitude=55.1904&longitude=30.2049&hourly=temperature_2m,rain,apparent_temperature&timezone=Europe%2FMoscow&forecast_days=3"
 urlmg = "https://api.open-meteo.com/v1/forecast?latitude=53.9168&longitude=30.3449&hourly=temperature_2m,rain,apparent_temperature&timezone=Europe%2FMoscow&forecast_days=3"
+urlD ='https://place.dog/300/200'
+urlV = 'https://finalspaceapi.com/api/v0/'
 
 async def set_commands():
     commands = [
@@ -68,6 +70,8 @@ openmeteo = openmeteo_requests.Client(session=retry_session)
 POGODA = [[types.KeyboardButton(text="Минск")],
         [types.KeyboardButton(text="Витебск")],
         [types.KeyboardButton(text="Могилев")],
+        [types.KeyboardButton(text="Картинка")],
+        [types.KeyboardButton(text="Видео")]
         ]
 
 
@@ -226,6 +230,26 @@ async def handle_mogilev(message: types.Message):
     await message.answer(f"{header}\n\nПочасовые данные (первые 5 строк):\n{table}")
     code_resp = requests.get(url)
     motion = 'Press mogilev btn'
+    return [motion, url, code_resp]
+
+#=============================
+
+@dp.message(F.text() == "Картинка")
+@logger
+async def with_puree(message: types.Message):
+    await bot.send_photo(message.chat.id, url)
+    url = urlD
+    code_resp = requests.get(url)
+    motion = 'Dog'
+    return [motion, url, code_resp]
+
+@dp.message(F.text() == "Видео")
+@logger
+async def with_puree(message: types.Message):
+    await bot.send_video(message.chat.id, url)
+    url = urlV
+    code_resp = requests.get(url)
+    motion = 'Vidos'
     return [motion, url, code_resp]
     
     
