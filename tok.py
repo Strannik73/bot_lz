@@ -1,1 +1,1 @@
-token_r = '8487111231:AAFUCOKLJ_m9R5vJaMBUDmpeHONRP1i1u90'
+token_r = ''

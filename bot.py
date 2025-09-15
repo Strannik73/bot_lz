@@ -14,7 +14,7 @@ import pandas as pd
 
 
 #=======================ТОКЕН==============
-token_r = '8487111231:AAFUCOKLJ_m9R5vJaMBUDmpeHONRP1i1u90'
+token_r = ''
 
 bot = Bot(token_r)
 dp = Dispatcher()
@@ -37,7 +37,7 @@ def logger(func):
         df.loc[len(df.index)] = [message.from_user.username, motion, api, datetime.now().date(), datetime.now().time(), api_answer]
         df.to_csv('log.csv', index=True, index_label='Unic_ID')
     return wrapper
-        
+
 
 #=================================================================================
 urlmk = "https://api.open-meteo.com/v1/forecast?latitude=53.9&longitude=27.5667&hourly=temperature_2m,precipitation_probability&forecast_days=3"
@@ -70,7 +70,7 @@ POGODA = [[types.KeyboardButton(text="Минск")],
         [types.KeyboardButton(text="Могилев")],
         ]
 
-    
+
 @dp.message(F.text == "Минск")
 @logger
 async def handle_minsk(message: types.Message):
@@ -84,14 +84,14 @@ async def handle_minsk(message: types.Message):
         "timezone": "Europe/Moscow",
         "forecast_days": 1,
     }
-    
+
     responses = openmeteo.weather_api(url, params=params)
     response = responses[0]
-    
+
     coords = f"{response.Latitude()}°N {response.Longitude()}°E"
     elevation = f"{response.Elevation()} m"
     tz       = f"{response.Timezone()} ({response.TimezoneAbbreviation()})"
-    
+
     hourly = response.Hourly()
     times = pd.date_range(
         start=pd.to_datetime(hourly.Time(), unit="s", utc=True),
@@ -109,7 +109,7 @@ async def handle_minsk(message: types.Message):
         "rain": rain_vals,
         "feels_like": app_temp
     })
-    
+
     header = (
         f"Погода в Минске\n"
         f"Координаты: {coords}\n"
@@ -118,7 +118,7 @@ async def handle_minsk(message: types.Message):
     )
 
     table = df.head().to_string(index=False)
-    
+
     await message.answer(f"{header}\n\nHourly data (first 5 rows):\n{table}")
     code_resp = requests.get(url)
     motion = 'Press minsk btn'
