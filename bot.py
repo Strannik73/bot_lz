@@ -236,9 +236,10 @@ async def handle_mogilev(message: types.Message):
 @dp.message(F.text == "Факты о котах")
 @logger
 async def handle_cats(message: types.Message):
-    await message.answer(urlCat)
     url = urlCat
     code_resp = requests.get(url)
+    data = code_resp.json()
+    await message.answer(data['fact'])
     motion = 'Cats'
     return [motion, url, code_resp]
 
