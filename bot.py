@@ -253,17 +253,6 @@ async def with_photo(message: types.Message):
     return [motion, url, code_resp]
 
 
-# @dp.message(F.text == "Картинка")
-# async def with_photo(message: types.Message):
-#     async with aiohttp.ClientSession() as session:
-#         async with session.get(urlD) as resp:
-#             resp.raise_for_status()
-#             img_bytes = await resp.read()
-
-#     bio = BytesIO(img_bytes)
-#     bio.seek(0)
-#     input_file = InputFile(bio, filename="image.jpg")
-#     await bot.send_photo(chat_id=message.chat.id, photo=input_file, caption="Вот картинка")
 
 
 # Обработчик сообщения
